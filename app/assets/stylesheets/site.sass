@@ -24,7 +24,6 @@ h1
   font-size: 2rem
   text-align: center
   padding-bottom: 9px
-  margin-bottom: 20px
 
 hr
   background-color: #434857
@@ -41,9 +40,17 @@ hr
 
   &.meta
     position: absolute
-    top: 0
+    top: 10px
     right: 15px
 
+.steps
+  color: #51586a
+  text-align: center
+  .step
+    display: inline-block
+    &.current
+      color: white
+      text-decoration: underline
 
 /*
  * Header nav
@@ -88,11 +95,16 @@ header nav
 /*
  * Dashboard
 
-/* Placeholders
+/* Sections
 
-.placeholders
+Section
   padding-bottom: 3rem
 
-.placeholder img
-  padding-top: 1.5rem
-  padding-bottom: 1.5rem
+  img
+    padding-top: 1.5rem
+    padding-bottom: 1.5rem
+
+  button
+    margin-top: 0.5em
+    &:hover
+      cursor: pointer
