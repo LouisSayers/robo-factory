@@ -1,0 +1,98 @@
+$dark_background_color: #252830
+$light_text_color: #fff
+
+/*
+ * Base structure
+
+/* Move down content because we have a fixed navbar that is 3.5rem tall
+
+body
+  padding-top: 3.5rem
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif
+  background-color: $dark_background_color
+/*
+ * Typography
+
+h1, h2, h3, h4, p, li, a
+  font-family: inherit
+  color: $light_text_color
+
+h1, h2, h3, h4
+  font-weight: 300
+
+h1
+  font-size: 2rem
+  text-align: center
+  padding-bottom: 9px
+  margin-bottom: 20px
+
+hr
+  background-color: #434857
+
+.subtitle
+  padding-left: 15px
+  padding-right: 15px
+  margin-bottom: 5px
+  font-size: 85%
+  font-weight: normal
+  letter-spacing: 1px
+  color: #51586a
+  text-transform: uppercase
+
+  &.meta
+    position: absolute
+    top: 0
+    right: 15px
+
+
+/*
+ * Header nav
+header nav
+  background-color: $dark_background_color
+
+.logo
+  width: 200px
+
+/*
+ * Sidebar
+
+.sidebar
+  position: fixed
+  top: 51px
+  bottom: 0
+  left: 0
+  z-index: 1000
+  padding: 1.5em 0
+  overflow-x: hidden
+  overflow-y: auto
+  /* Scrollable contents if viewport is shorter than content.
+  background-color: $dark_background_color
+  .nav
+    margin-bottom: 20px
+    li a
+      color: #cfd2da
+      &:hover
+        color: white
+  .nav-item
+    width: 100%
+    + .nav-item
+      margin-left: 0
+
+  .nav-link
+    border-radius: 0
+
+  .nav-pills .nav-link.active, .nav-pills .show>.nav-link
+    background-color: #1997c6
+    color: #fff
+
+/*
+ * Dashboard
+
+/* Placeholders
+
+.placeholders
+  padding-bottom: 3rem
+
+.placeholder img
+  padding-top: 1.5rem
+  padding-bottom: 1.5rem
