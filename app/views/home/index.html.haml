@@ -1,55 +1,58 @@
--#= javascript_pack_tag 'robo_factory'
-%nav.col-sm-3.col-md-2.d-none.d-sm-block.sidebar
-  %ul.nav.nav-pills.flex-column
-    %li.subtitle Dashboards
-    %li.nav-item
-      %a.nav-link.active{:href => "#"}
-        Quality Assurance
-    %li.nav-item
-      %a.nav-link{:href => "#"} Shipping
+#robo_factory
+= javascript_pack_tag 'robo_factory'
 
-%main.col-sm-9.ml-sm-auto.col-md-10.pt-3
-  %h1 Quality Assurance
-  .subtitle.meta Batch #1
-  .steps
-    .step.current Stage 1
-    %i.fa.fa-angle-right{ 'aria-hidden' => 'true' }
-    .step Stage 2
-  %hr
-  .row.alert-bar
-    .col-12.col-sm-6.message This stage is now complete.
-    .col-12.col-sm-6.action
-      %button.btn.btn-success Next stage >
-  %h2 Requires Attention
-  %section.row.text-center
-    .col-6.col-sm-3.robot
-      %h4 Robot #1
-      .text-muted On Fire and Sentient
-      %button.btn.btn-info Extinguish
-    .col-6.col-sm-3.robot
-      %h4 Robot #2
-      %span.text-muted Extinguished
-    .col-6.col-sm-3.robot
-      %h4 Robot #3
-      %span.text-muted On Fire and Sentient
-      %button.btn.btn-info Extinguish
-    .col-6.col-sm-3.robot
-      %h4 Robot #4
-      %span.text-muted On Fire and Sentient
-      %button.btn.btn-info Extinguish
 
-  %h2 No Attention Required
-  %section.row.text-center
-    .col-6.col-sm-3.robot
-      %h4 Robot #5
-      .text-muted Passed check
-    .col-6.col-sm-3.robot
-      %h4 Robot #6
-      %span.text-muted Passed check
-    .col-6.col-sm-3.robot
-      %h4 Robot #7
-      %span.text-muted Passed check
-    .col-6.col-sm-3.robot
-      %h4 Robot #8
-      %span.text-muted Passed check
-
+-#%nav.col-sm-3.col-md-2.d-none.d-sm-block.sidebar
+-#  %ul.nav.nav-pills.flex-column
+-#    %li.subtitle Dashboards
+-#    %li.nav-item
+-#      %a.nav-link.active{:href => "#"}
+-#        Quality Assurance
+-#    %li.nav-item
+-#      %a.nav-link{:href => "#"} Shipping
+-#
+-#%main.col-sm-9.ml-sm-auto.col-md-10.pt-3
+  -#%h1 Quality Assurance
+  -#.subtitle.meta Batch #1
+  -#.steps
+  -#  .step.current Stage 1
+  -#  %i.fa.fa-angle-right{ 'aria-hidden' => 'true' }
+  -#  .step Stage 2
+  -#%hr
+  -#.row.alert-bar
+  -#  .col-12.col-sm-6.message This stage is now complete.
+  -#  .col-12.col-sm-6.action
+  -#    %button.btn.btn-success Next stage >
+  -#%h2 Requires Attention
+  -#%section.row.text-center
+  -#  .col-6.col-sm-3.robot
+  -#    %h4 Robot #1
+  -#    .text-muted On Fire and Sentient
+  -#    %button.btn.btn-info Extinguish
+  -#  .col-6.col-sm-3.robot
+  -#    %h4 Robot #2
+  -#    %span.text-muted Extinguished
+  -#  .col-6.col-sm-3.robot
+  -#    %h4 Robot #3
+  -#    %span.text-muted On Fire and Sentient
+  -#    %button.btn.btn-info Extinguish
+  -#  .col-6.col-sm-3.robot
+  -#    %h4 Robot #4
+  -#    %span.text-muted On Fire and Sentient
+  -#    %button.btn.btn-info Extinguish
+  -#
+  -#%h2 No Attention Required
+  -#%section.row.text-center
+  -#  .col-6.col-sm-3.robot
+  -#    %h4 Robot #5
+  -#    .text-muted Passed check
+  -#  .col-6.col-sm-3.robot
+  -#    %h4 Robot #6
+  -#    %span.text-muted Passed check
+  -#  .col-6.col-sm-3.robot
+  -#    %h4 Robot #7
+  -#    %span.text-muted Passed check
+  -#  .col-6.col-sm-3.robot
+  -#    %h4 Robot #8
+  -#    %span.text-muted Passed check
+  -#
