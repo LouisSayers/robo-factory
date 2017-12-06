@@ -52,6 +52,9 @@ hr
       color: white
       text-decoration: underline
 
+button:hover
+  cursor: pointer
+
 /*
  * Header nav
 header nav
@@ -94,9 +97,19 @@ header nav
 
 /*
  * Dashboard
+.alert-bar
+  width: 100%
+  text-align: center
+  margin-bottom: 0.5em
+  .message
+    padding-top: 0.25em
+    color: #28a745
+    font-size: 0.95em
+  .action button
+    font-size: 0.9em
+
 
 /* Sections
-
 Section
   padding-bottom: 3rem
 
@@ -106,5 +119,9 @@ Section
 
   button
     margin-top: 0.5em
-    &:hover
-      cursor: pointer
+
+@media(min-width: 600px)
+  .alert-bar
+    text-align: left
+    .action
+      text-align: right
