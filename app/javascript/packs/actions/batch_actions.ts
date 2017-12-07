@@ -26,13 +26,13 @@ export function getDataFailure() {
 }
 
 export function fetchData() {
-  return (dispatch) => {
+  return (dispatch, getState, api) => {
     dispatch(getData())
-
-    setTimeout(() => {
-      dispatch(getDataSuccess('yay'))
-    },
-      5000
-    )
+    api.getNextBatch()
+      .then((response) =>
+        dispatch(getDataSuccess(response.data))
+      ).catch((error) =>
+        dispatch(getDataFailure())
+      )
   }
 }

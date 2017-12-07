@@ -19,13 +19,14 @@ const batch = (state = initialState, action) => {
       return {
         ...state,
         robots: [],
-        isFetching: true
+        isFetching: true,
+        error: false
       }
     case BATCH_FETCHING_DATA_SUCCESS:
       return {
         ...state,
         isFetching: false,
-        data: action.data
+        robots: action.data
       }
     case BATCH_FETCHING_DATA_FAILURE:
       return {

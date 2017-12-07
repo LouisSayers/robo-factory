@@ -4,7 +4,7 @@ import * as ReactRedux from 'react-redux'
 const { connect } = ReactRedux
 
 const QualityAssurance = (props) => {
-  let body = ''
+  let body: Element
 
   if(props.loading) {
     body = <p>Loading...</p>
