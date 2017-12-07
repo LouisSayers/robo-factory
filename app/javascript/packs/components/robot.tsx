@@ -1,8 +1,8 @@
 import * as React from 'react'
 
 const Robot = (props) => {
-  let actionButton = props.showAction ?
-    <button className="btn btn-info">{props.actionText}</button>
+  let actionButton = props.actionEnabled ?
+    <button onClick={ () => props.actionOnClick(props.id) } className="btn btn-info">{ props.actionText }</button>
     : null
 
   return (

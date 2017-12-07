@@ -27,8 +27,8 @@ export function robotExtinguishFailed(robotId) {
   }
 }
 
-export function extinguish(robot) {
+export function extinguishRobot(robotId) {
   return (dispatch, getState, api) => {
-    dispatch(extinguishing(robot.id))
+    dispatch(extinguishing(robotId))
   }
 }

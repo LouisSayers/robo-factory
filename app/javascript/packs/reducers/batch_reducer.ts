@@ -1,10 +1,11 @@
-import * as BatchConstants from '../constants'
+import * as Constants from '../constants'
+import robotReducer from './robot_reducer'
 
 const { 
   BATCH_FETCHING_DATA, 
   BATCH_FETCHING_DATA_SUCCESS, 
   BATCH_FETCHING_DATA_FAILURE 
-} = BatchConstants
+} = Constants
 
 const initialState = {
   robots: {},
@@ -19,7 +20,19 @@ const byId = (items) => {
 }
 
 const batch = (state = initialState, action) => {
+  let isRobotAction = (action.type.match(/^ROBOT_/) || {}).input
+
   switch (action.type) {
+    case isRobotAction:
+      let robot = state.robots[action.robotId]
+      let newRobots = Object.assign({}, state.robots, {
+        [action.robotId]: robotReducer(robot, action)
+      })
+
+      return {
+        ...state,
+        robots: newRobots
+      }
     case BATCH_FETCHING_DATA:
       return {
         ...state,
