@@ -3,7 +3,7 @@ require 'rails_helper'
 describe RobotsController do
 
   describe 'extinguish' do
-    let(:robot) { create(:robot, extinguished: false) }
+    let(:robot) { create(:robot, :with_batch, extinguished: false) }
     subject { post :extinguish, params: { id: robot_id, format: :json } }
 
     context 'valid robot id' do

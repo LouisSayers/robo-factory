@@ -10,7 +10,7 @@ namespace :batch do
 
   def random_colour
     colours = %w(red yellow pink green purple orange blue black white)
-    colours[rand(colours.length + 1)]
+    colours.sample
   end
 
   def create_configuration
@@ -31,15 +31,30 @@ namespace :batch do
     end
   end
 
+  def create_robot_name
+    titles = %w(Mr Mrs Miss Ms Sir Dr Lady Lord)
+    first_names = %w(Knight Ghost Moon Mega Rock Roomba Awesome-O Bishop Clank Daft)
+    last_names = %w(Punk 5 Android Mindstorm Boy Giant Prime 9000 Rodriguez)
+
+    [titles, first_names, last_names].map(&:sample).join(' ')
+  end
+
+  def create_robot(configuration)
+    Robot.create(
+      name: create_robot_name,
+      robot_configuration: configuration
+    )
+  end
+
   desc 'Creates a batch of robots'
   task create: :environment do
     batch = Batch.create
     all_statuses = Status.all
 
-    10.times do
+    20.times do
       ActiveRecord::Base.transaction do
         configuration = create_configuration()
-        robot = Robot.create(robot_configuration: configuration)
+        robot = create_robot(configuration)
         add_statuses_for(all_statuses, robot)
         batch.robots << robot
       end
