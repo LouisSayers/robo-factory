@@ -7,10 +7,15 @@ const {
 } = BatchConstants
 
 const initialState = {
-  robots: [],
+  robots: {},
   dataFetched: false,
   isFetching: false,
   error: false
+}
+
+const byId = (items) => {
+  const reducer = (obj, item) => { obj[item.id] = item; return obj }
+  return items.reduce(reducer, {})
 }
 
 const batch = (state = initialState, action) => {
@@ -18,7 +23,7 @@ const batch = (state = initialState, action) => {
     case BATCH_FETCHING_DATA:
       return {
         ...state,
-        robots: [],
+        robots: {},
         isFetching: true,
         error: false
       }
@@ -26,7 +31,7 @@ const batch = (state = initialState, action) => {
       return {
         ...state,
         isFetching: false,
-        robots: action.data
+        robots: byId(action.data)
       }
     case BATCH_FETCHING_DATA_FAILURE:
       return {
