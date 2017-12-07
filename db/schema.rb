@@ -10,10 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171207113519) do
+ActiveRecord::Schema.define(version: 20171207211409) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "batches", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "robot_configurations", force: :cascade do |t|
     t.boolean "has_sentience", default: false
@@ -31,6 +36,8 @@ ActiveRecord::Schema.define(version: 20171207113519) do
     t.boolean "extinguished", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "batch_id"
+    t.index ["batch_id"], name: "index_robots_on_batch_id"
     t.index ["robot_configuration_id"], name: "index_robots_on_robot_configuration_id"
   end
 
