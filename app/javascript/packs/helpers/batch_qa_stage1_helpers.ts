@@ -10,6 +10,10 @@ const badRobotsFrom = (robots) => {
   })
 }
 
+export function allExtinguished(robots) {
+  return robots.every(robot => robot.extinguished)
+}
+
 export function robotsFrom(state) {
   let robots = batchRobotsFrom(state)
   let badRobots = badRobotsFrom(robots)

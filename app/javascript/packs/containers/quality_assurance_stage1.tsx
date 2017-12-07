@@ -5,11 +5,18 @@ import { extinguishRobot } from '../actions/robot_actions'
 import * as Stage1Helpers from '../helpers/batch_qa_stage1_helpers'
 
 const { connect } = ReactRedux
-const { robotsFrom, canBeExtinguished, descriptionForBadRobot } = Stage1Helpers
+const { robotsFrom, allExtinguished, canBeExtinguished, descriptionForBadRobot } = Stage1Helpers
 
 const QualityAssuranceStage1 = (props) => {
+  const alertBar = allExtinguished(props.badRobots) ? (
+    <div className='row alert-bar'>
+      <div className='col-12 col-sm-6 message'>This stage is now complete.</div>
+    </div>
+  ) : ''
+
   return (
     <div>
+      { alertBar }
       <h2>Requires Attention</h2>
       <section className="row text-center">
         { 
