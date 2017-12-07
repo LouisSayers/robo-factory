@@ -20,6 +20,9 @@ const QualityAssuranceStage1 = (props) => {
     return description
   }
 
+  const canBeExtinguished = (robot) => {
+    return !robot.extinguishing && !robot.extinguished
+  }
 
   return (
     <div>
@@ -30,7 +33,7 @@ const QualityAssuranceStage1 = (props) => {
             return <Robot
               {...robot}
               key = {robot.id}
-              actionEnabled = { !robot.extinguished }
+              actionEnabled = { canBeExtinguished(robot) }
               actionText = 'Extinguish'
               actionOnClick = { props.onExtinguish } 
               description = { descriptionForBadRobot(robot) }

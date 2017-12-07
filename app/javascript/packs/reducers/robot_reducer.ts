@@ -13,6 +13,18 @@ const robotReducer = (state = {}, action) => {
         ...state,
         extinguishing: true
       }
+    case ROBOT_EXTINGUISHED:
+      return {
+        ...state,
+        extinguishing: false,
+        extinguished: true
+      }
+    case ROBOT_EXTINGUISH_FAILED:
+      return {
+        ...state,
+        extinguishing: false,
+        extinguished: false
+      }
     default:
       return state
   }
