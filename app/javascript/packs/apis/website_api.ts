@@ -17,6 +17,8 @@ const postRequest = (url, body='') => {
       if (response.status !== 200) {
         let errorMessage = "Looks like the server didn't like something!"
         return Promise.reject(new Error(errorMessage))
+      } else {
+        return Promise.resolve(response)
       }
     }).then(function (response) {
       return response.json();

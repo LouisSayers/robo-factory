@@ -32,12 +32,11 @@ export function extinguishRobot(robotId) {
     dispatch(extinguishing(robotId))
     api.extinguishRobot(robotId)
       .then((response) =>{
-        console.log(response)
         return dispatch(robotExtinguished(robotId))}
       ).catch((error) => {
-        console.log('error...')
-        console.log(error)
-        dispatch(robotExtinguishFailed(robotId))\
+          console.log('error...')
+          console.log(error)
+          dispatch(robotExtinguishFailed(robotId))
         }
       )
   }

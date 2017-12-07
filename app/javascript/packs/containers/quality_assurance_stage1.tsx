@@ -2,28 +2,12 @@ import * as React from 'react'
 import * as ReactRedux from 'react-redux'
 import Robot from '../components/robot'
 import { extinguishRobot } from '../actions/robot_actions'
-import * as Helpers from '../helpers/batch_helpers'
+import * as Stage1Helpers from '../helpers/batch_qa_stage1_helpers'
 
 const { connect } = ReactRedux
-const { batchRobotsFrom } = Helpers
+const { robotsFrom, canBeExtinguished, descriptionForBadRobot } = Stage1Helpers
 
 const QualityAssuranceStage1 = (props) => {
-  const descriptionForBadRobot = (robot) => {
-    let description = 'On Fire and Sentient'
-
-    if(robot.extinguishing) {
-      description = 'Extinguishing...'
-    } else if(robot.extinguished) {
-      description = 'Extinguished'
-    }
-
-    return description
-  }
-
-  const canBeExtinguished = (robot) => {
-    return !robot.extinguishing && !robot.extinguished
-  }
-
   return (
     <div>
       <h2>Requires Attention</h2>
@@ -58,15 +42,7 @@ const QualityAssuranceStage1 = (props) => {
 }
 
 function mapStateToProps (state) {
-  let robots = batchRobotsFrom(state)
-
-  let badRobots = robots.filter(robot => robot.id < 2)
-  let goodRobots = robots.filter(robot => robot.id > 1)
-
-  return {
-    badRobots: badRobots,
-    goodRobots: goodRobots
-  }
+  return robotsFrom(state)
 }
 
 function mapDispatchToProps (dispatch) {

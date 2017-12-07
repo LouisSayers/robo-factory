@@ -11,7 +11,8 @@ class RobotPresenter
       id: @robot.id,
       name: @robot.name,
       configuration: @configuration,
-      statuses: @statuses
+      statuses: @statuses,
+      extinguished: @robot.extinguished
     }
   end
 
