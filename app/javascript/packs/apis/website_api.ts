@@ -14,6 +14,11 @@ const postRequest = (url, body='') => {
       },
       body: body
     }).then(function (response) {
+      if (response.status !== 200) {
+        let errorMessage = "Looks like the server didn't like something!"
+        return Promise.reject(new Error(errorMessage))
+      }
+    }).then(function (response) {
       return response.json();
     })
 }
