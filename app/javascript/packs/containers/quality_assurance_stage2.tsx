@@ -1,6 +1,7 @@
 import * as React from 'react'
 import * as ReactRedux from 'react-redux'
 import Robot from '../components/robot'
+import AlertBar from '../components/alert_bar'
 import { recycleRobots } from '../actions/robot_actions'
 import * as Stage2Helpers from '../helpers/batch_qa_stage2_helpers'
 
@@ -8,14 +9,6 @@ const { connect } = ReactRedux
 const { robotsFrom, stage2Complete, descriptionForBadRobot } = Stage2Helpers
 
 const QualityAssuranceStage2 = (props) => {
-  const alertBar = stage2Complete(props.allRobots) ? (
-    <div className='row alert-bar'>
-      <div className='col-12 col-sm-6 message'>
-        This stage is now complete. Proceed to shipping.
-      </div>
-    </div>
-  ) : ''
-
   const recycleButton = props.badRobots.length !== 0 ? (
     <button onClick={ () => props.onRecycleAll(props.badRobots) } className="btn btn-info">
       Recycle Robots
@@ -24,7 +17,7 @@ const QualityAssuranceStage2 = (props) => {
 
   return (
     <div>
-      { alertBar }
+      <AlertBar active={stage2Complete(props.allRobots)} message="This stage is now complete. Proceed to shipping." />
 
       <div className='row header-action'>
         <div className='col-12 col-sm-6'>

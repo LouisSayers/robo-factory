@@ -7,9 +7,11 @@ const {
 } = Constants
 
 const robotsReducer = (state = {}, action) => {
+  let updatedRobots = [];
+
   switch (action.type) {
     case ROBOTS_RECYCLING:
-      let updatedRobots = {...state}
+      updatedRobots = {...state}
 
       for(let robotId of action.robotIds) {
         let robot = updatedRobots[robotId]
@@ -26,7 +28,7 @@ const robotsReducer = (state = {}, action) => {
         }, {})
       return leftOverRobots
     case ROBOTS_RECYCLING_FAILED:
-      let updatedRobots = {...state}
+      updatedRobots = {...state}
 
       for(let robotId of action.robotIds) {
         let robot = updatedRobots[robotId]

@@ -37,7 +37,9 @@ const factorySecondsFrom = (robots) => {
 }
 
 export function stage2Complete(robots) {
-  return false
+  let eligibleRobots = nonExtinguished(robots)
+  let badRobots = badRobotsFrom(eligibleRobots)
+  return badRobots.length === 0
 }
 
 export function descriptionForBadRobot(robot) {

@@ -27,11 +27,4 @@ function mapStateToProps (state) {
   return { loading: isFetching }
 }
 
-function mapDispatchToProps (dispatch) {
-  return { }
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(QualityAssurance)
+export default connect(mapStateToProps)(QualityAssurance)
