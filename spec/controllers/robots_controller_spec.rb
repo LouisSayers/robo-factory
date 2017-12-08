@@ -36,4 +36,21 @@ describe RobotsController do
     end
   end
 
+  describe '#recycle' do
+    let(:robot) { create(:robot, :with_batch, extinguished: false) }
+    let(:robotIds) { [ robot_id ] }
+
+    subject { post :recycle, params: { robotIds: robotIds, format: :json } }
+
+    context 'valid robot id' do
+      let(:robot_id) { robot.id }
+
+      before { subject }
+
+      it 'removes the robot' do
+        expect(Robot.exists?(id: robot_id)).to eq false
+      end
+    end
+  end
+
 end

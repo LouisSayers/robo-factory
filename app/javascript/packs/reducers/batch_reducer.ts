@@ -1,5 +1,6 @@
 import * as Constants from '../constants'
 import robotReducer from './robot_reducer'
+import robotsReducer from './robots_reducer'
 
 const { 
   BATCH_FETCHING_DATA, 
@@ -21,6 +22,7 @@ const byId = (items) => {
 
 const batch = (state = initialState, action) => {
   let isRobotAction = (action.type.match(/^ROBOT_/) || {}).input
+  let isRobotsAction = (action.type.match(/^ROBOTS_/) || {}).input
 
   switch (action.type) {
     case isRobotAction:
@@ -29,6 +31,12 @@ const batch = (state = initialState, action) => {
         [action.robotId]: robotReducer(robot, action)
       })
 
+      return {
+        ...state,
+        robots: newRobots
+      }
+    case isRobotsAction:
+      let newRobots = robotsReducer(state.robots, action)
       return {
         ...state,
         robots: newRobots

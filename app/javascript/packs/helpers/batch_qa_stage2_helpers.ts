@@ -41,7 +41,8 @@ export function stage2Complete(robots) {
 }
 
 export function descriptionForBadRobot(robot) {
-  return 'Failed QA - Ready for Recycling'
+  return robot.recycling ? 'Recycling...'
+    : 'Failed QA - Ready for Recycling'
 }
 
 export function robotsFrom(state) {

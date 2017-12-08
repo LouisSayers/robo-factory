@@ -12,7 +12,7 @@ const postRequest = (url, body={}) => {
       headers: {
         'Content-type': 'application/json; charset=UTF-8'
       },
-      body: body
+      body: JSON.stringify(body)
     }).then(function (response) {
       if (response.status !== 200) {
         let errorMessage = "Looks like the server didn't like something!"
