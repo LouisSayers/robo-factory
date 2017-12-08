@@ -25,7 +25,7 @@ const batch = (state = initialState, action) => {
   switch (action.type) {
     case isRobotAction:
       let robot = state.robots[action.robotId]
-      let newRobots = Object.assign({}, state.robots, {
+      let newRobots = Object.assign(state.robots, {
         [action.robotId]: robotReducer(robot, action)
       })
 

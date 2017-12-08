@@ -6,7 +6,7 @@ const getRequest = (url) => {
     })
 }
 
-const postRequest = (url, body='') => {
+const postRequest = (url, body={}) => {
   return fetch(url, {
       method: 'post',
       headers: {
@@ -28,6 +28,7 @@ const postRequest = (url, body='') => {
 const websiteApi = {
   getNextBatch: () => getRequest('/robots.json'),
   extinguishRobot: (robotId) => postRequest(`/robots/${robotId}/extinguish.json`),
+  recycleRobots: (robotIds) => postRequest(`/robots/recycle.json`, { robotIds }),
 }
 
 export default websiteApi

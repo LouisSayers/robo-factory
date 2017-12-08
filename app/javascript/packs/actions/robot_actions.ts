@@ -3,7 +3,10 @@ import * as Constants from '../constants'
 const {
   ROBOT_EXTINGUISHING,
   ROBOT_EXTINGUISHED,
-  ROBOT_EXTINGUISH_FAILED
+  ROBOT_EXTINGUISH_FAILED,
+  ROBOTS_RECYCLING,
+  ROBOTS_RECYCLED,
+  ROBOTS_RECYCLING_FAILED
 } = Constants
 
 export function extinguishing(robotId) {
@@ -42,8 +45,40 @@ export function extinguishRobot(robotId) {
   }
 }
 
-export function recycleRobot(robotId) {
+export function robotRecycling(robotIds) {
+  return {
+    type: ROBOTS_RECYCLING,
+    robotIds
+  }
+}
+
+export function robotsRecycled(robotIds) {
+  return {
+    type: ROBOTS_RECYCLED,
+    robotIds
+  }
+}
+
+export function robotRecyclingFailed(robotIds) {
+  return {
+    type: ROBOTS_RECYCLING_FAILED,
+    robotIds
+  }
+}
+
+export function recycleRobots(robots) {
+  const robotIds = robots.map(robot => robot.id)
+
   return (dispatch, getState, api) => {
-    
+    dispatch(robotRecycling(robotIds))
+    api.recycleRobots(robotIds)
+      .then((response) =>{
+        return dispatch(robotsRecycled(robotIds))}
+      ).catch((error) => {
+        console.log('error...')
+        console.log(error)
+        dispatch(robotRecyclingFailed(robotIds))
+      }
+    )
   }
 }

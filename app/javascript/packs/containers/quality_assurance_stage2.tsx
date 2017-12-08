@@ -1,7 +1,7 @@
 import * as React from 'react'
 import * as ReactRedux from 'react-redux'
 import Robot from '../components/robot'
-import { recycleRobot } from '../actions/robot_actions'
+import { recycleRobots } from '../actions/robot_actions'
 import * as Stage2Helpers from '../helpers/batch_qa_stage2_helpers'
 
 const { connect } = ReactRedux
@@ -25,7 +25,7 @@ const QualityAssuranceStage2 = (props) => {
           <h2>Requires Attention</h2>
         </div>
         <div className='col-12 col-sm-6 actions'>
-          <button className="btn btn-info">Recycle Robots</button>
+          <button onClick={ () => props.onRecycleAll(props.badRobots) } className="btn btn-info">Recycle Robots</button>
         </div>
       </div>
 
@@ -76,7 +76,7 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    onRecycle: (robotId) => dispatch(recycleRobot(robotId))
+    onRecycleAll: (robots) => dispatch(recycleRobots(robots))
   }
 }
 
