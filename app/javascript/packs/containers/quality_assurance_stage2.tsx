@@ -16,6 +16,12 @@ const QualityAssuranceStage2 = (props) => {
     </div>
   ) : ''
 
+  const recycleButton = props.badRobots.length !== 0 ? (
+    <button onClick={ () => props.onRecycleAll(props.badRobots) } className="btn btn-info">
+      Recycle Robots
+    </button>
+  ) : ''
+
   return (
     <div>
       { alertBar }
@@ -25,7 +31,7 @@ const QualityAssuranceStage2 = (props) => {
           <h2>Requires Attention</h2>
         </div>
         <div className='col-12 col-sm-6 actions'>
-          <button onClick={ () => props.onRecycleAll(props.badRobots) } className="btn btn-info">Recycle Robots</button>
+          { recycleButton }
         </div>
       </div>
 
