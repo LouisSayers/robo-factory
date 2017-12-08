@@ -6,7 +6,7 @@ const Robot = (props) => {
     : null
 
   return (
-    <div className="col-6 col-sm-3 robot">
+    <div className="col-6 col-sm-4 robot">
       <h4>#{props.id} {props.name}</h4>
       <div className="text-muted">{props.description}</div>
       { actionButton }

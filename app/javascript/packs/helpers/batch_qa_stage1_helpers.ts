@@ -10,8 +10,9 @@ const badRobotsFrom = (robots) => {
   })
 }
 
-export function allExtinguished(robots) {
-  return robots.every(robot => robot.extinguished)
+export function stage1Complete(robots) {
+  let badRobots = badRobotsFrom(robots)
+  return badRobots.every(robot => robot.extinguished)
 }
 
 export function robotsFrom(state) {
@@ -20,6 +21,7 @@ export function robotsFrom(state) {
   let goodRobots = robots.filter(robot => !badRobots.find(bad => bad === robot))
 
   return {
+    allRobots: robots,
     badRobots: badRobots,
     goodRobots: goodRobots
   }

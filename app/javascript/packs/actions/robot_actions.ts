@@ -41,3 +41,9 @@ export function extinguishRobot(robotId) {
       )
   }
 }
+
+export function recycleRobot(robotId) {
+  return (dispatch, getState, api) => {
+    
+  }
+}
