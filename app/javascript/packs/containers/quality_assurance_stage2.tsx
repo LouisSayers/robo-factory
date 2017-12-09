@@ -3,9 +3,11 @@ import * as ReactRedux from 'react-redux'
 import Robot from '../components/robot'
 import AlertBar from '../components/alert_bar'
 import { recycleRobots } from '../actions/robot_actions'
+import * as Stage1Helpers from '../helpers/batch_qa_stage1_helpers'
 import * as Stage2Helpers from '../helpers/batch_qa_stage2_helpers'
 
 const { connect } = ReactRedux
+const { stage1Complete } = Stage1Helpers
 const { robotsFrom, stage2Complete, descriptionForBadRobot } = Stage2Helpers
 
 const QualityAssuranceStage2 = (props) => {
@@ -15,10 +17,13 @@ const QualityAssuranceStage2 = (props) => {
     </button>
   ) : ''
 
-  return (
+  const accessDenied = (
+    <AlertBar message="Please complete the previous stage first." />
+  )
+
+  const stageContent = (
     <div>
       <AlertBar active={stage2Complete(props.allRobots)} message="QA is now complete. Please proceed to shipping." />
-
       <div className='row header-action'>
         <div className='col-12 col-sm-6'>
           <h2>Requires Attention</h2>
@@ -67,6 +72,8 @@ const QualityAssuranceStage2 = (props) => {
       </section>
     </div>
   )
+
+  return stage1Complete(props.allRobots) ? stageContent : accessDenied
 }
 
 function mapStateToProps (state) {
