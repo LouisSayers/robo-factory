@@ -11,13 +11,24 @@ describe BatchController do
 
     subject { get :show, params: { format: :json } }
 
-    before do
-      allow(RobotPresenter).to receive(:new).with(robot) { presenter }
-      subject
+    context 'has batches' do
+      before do
+        allow(RobotPresenter).to receive(:new).with(robot) { presenter }
+        subject
+      end
+
+      it 'returns robot json representations' do
+        expect(response_json['data']).to eq [ test_json ]
+      end
     end
 
-    it 'returns robot json representations' do
-      expect(response_json['data']).to eq [ test_json ]
+    context 'no batches' do
+      let(:batch) { nil }
+      let(:robot) { nil }
+
+      it 'does not raise errors' do
+        expect { subject }.not_to raise_error
+      end
     end
   end
 
