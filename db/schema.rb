@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171207211409) do
+ActiveRecord::Schema.define(version: 20171209051752) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,8 +37,10 @@ ActiveRecord::Schema.define(version: 20171207211409) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "batch_id"
+    t.bigint "shipment_id"
     t.index ["batch_id"], name: "index_robots_on_batch_id"
     t.index ["robot_configuration_id"], name: "index_robots_on_robot_configuration_id"
+    t.index ["shipment_id"], name: "index_robots_on_shipment_id"
   end
 
   create_table "robots_statuses", force: :cascade do |t|
@@ -46,6 +48,11 @@ ActiveRecord::Schema.define(version: 20171207211409) do
     t.bigint "status_id"
     t.index ["robot_id"], name: "index_robots_statuses_on_robot_id"
     t.index ["status_id"], name: "index_robots_statuses_on_status_id"
+  end
+
+  create_table "shipments", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "statuses", force: :cascade do |t|

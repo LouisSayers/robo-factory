@@ -12,7 +12,8 @@ class RobotPresenter
       name: @robot.name,
       configuration: @configuration,
       statuses: @statuses,
-      extinguished: @robot.extinguished
+      extinguished: @robot.extinguished,
+      shipped: @robot.shipment.present?
     }
   end
 

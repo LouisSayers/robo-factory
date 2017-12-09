@@ -12,14 +12,16 @@ export function shippingOrShipped(robot) {
   return robot.shipping || robot.shipped
 }
 
-export function shippingDescriptionFor(robot) {
+export function shippingDescriptionFor(robot, default_message = '') {
   let description = ''
   if(robot.shipped) {
     description = 'Shipped'
   } else if(robot.shipping) {
     description = 'Shipping...'
-  } else {
+  } else if(robot.add_to_shipment) {
     description = 'Ready for Shipping'
+  } else {
+    description = default_message
   }
 
   return description

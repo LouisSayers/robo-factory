@@ -3,13 +3,13 @@ class RobotsController < ApplicationController
 
   def extinguish
     @robot.update(extinguished: true)
-    respond_with_json { {} }
+    render json: {}
   end
 
   def recycle
     robots = Robot.where(id: params[:robotIds])
     robots.destroy_all
-    respond_with_json { {} }
+    render json: {}
   end
 
   private

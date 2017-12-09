@@ -30,8 +30,8 @@ const RobotShipping = (props) => {
             <Robot
               {...robot}
               key={robot.id}
-              description = "Factory second"
-              actionEnabled = { true }
+              description = { shippingDescriptionFor(robot, "Factory second") }
+              actionEnabled = { !shippingOrShipped(robot) }
               actionText = 'Add to Shipping'
               actionOnClick = { props.addToShipping }
             />
@@ -46,8 +46,8 @@ const RobotShipping = (props) => {
             <Robot
               {...robot}
               key={robot.id}
-              description = "Passed checks"
-              actionEnabled = { true }
+              description = { shippingDescriptionFor(robot, "Passed checks") }
+              actionEnabled = { !shippingOrShipped(robot) }
               actionText = 'Add to Shipping'
               actionOnClick = { props.addToShipping }
             />

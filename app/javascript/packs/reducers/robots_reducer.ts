@@ -55,6 +55,7 @@ const robotsReducer = (state = {}, action) => {
         let robot = updatedRobots[robotId]
         robot.shipping = false
         robot.shipped = true
+        robot.add_to_shipment = false
       }
 
       return updatedRobots
