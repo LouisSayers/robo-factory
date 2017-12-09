@@ -11,7 +11,7 @@ const { robotsFrom, stage1Complete, canBeExtinguished, descriptionForBadRobot } 
 const QualityAssuranceStage1 = (props) => {
   return (
     <div>
-      <AlertBar active={stage1Complete(props.allRobots)} message="This stage is now complete." />
+      <AlertBar active={props.stageComplete} message="This stage is now complete." />
       <h2>Requires Attention</h2>
       <section className="row text-center">
         { 
@@ -44,7 +44,11 @@ const QualityAssuranceStage1 = (props) => {
 }
 
 function mapStateToProps (state) {
-  return robotsFrom(state)
+  let robots = robotsFrom(state)
+  return {
+    ...robots,
+    stageComplete: stage1Complete(robots.allRobots)
+  }
 }
 
 function mapDispatchToProps (dispatch) {

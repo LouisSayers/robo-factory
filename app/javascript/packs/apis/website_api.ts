@@ -6,42 +6,27 @@ const getRequest = (url) => {
     })
 }
 
-const postRequest = (url, body={}) => {
+const requestWithBody = (requestType, url, body) => {
   return fetch(url, {
-      method: 'post',
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8'
-      },
-      body: JSON.stringify(body)
-    }).then(function (response) {
-      if (response.status !== 200) {
-        let errorMessage = "Looks like the server didn't like something!"
-        return Promise.reject(new Error(errorMessage))
-      } else {
-        return Promise.resolve(response)
-      }
-    }).then(function (response) {
-      return response.json();
-    })
+    method: requestType,
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8'
+    },
+    body: JSON.stringify(body)
+  }).then(function (response) {
+    if (response.status !== 200) {
+      let errorMessage = "Looks like the server didn't like something!"
+      return Promise.reject(new Error(errorMessage))
+    } else {
+      return Promise.resolve(response)
+    }
+  }).then(function (response) {
+    return response.json();
+  })
 }
-const putRequest = (url, body={}) => {
-  return fetch(url, {
-      method: 'put',
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8'
-      },
-      body: JSON.stringify(body)
-    }).then(function (response) {
-      if (response.status !== 200) {
-        let errorMessage = "Looks like the server didn't like something!"
-        return Promise.reject(new Error(errorMessage))
-      } else {
-        return Promise.resolve(response)
-      }
-    }).then(function (response) {
-      return response.json();
-    })
-}
+
+const postRequest = (url, body={}) => requestWithBody('post', url, body)
+const putRequest = (url, body={}) => requestWithBody('put', url, body)
 
 const websiteApi = {
   getNextBatch: () => getRequest('/robots.json'),
