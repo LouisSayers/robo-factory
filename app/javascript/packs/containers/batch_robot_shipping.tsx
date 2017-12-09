@@ -4,15 +4,21 @@ import Robot from '../components/robot'
 import AlertBar from '../components/alert_bar'
 import * as BatchHelpers from '../helpers/batch_helpers'
 import * as ShippingHelpers from '../helpers/shipping_helpers'
-import { addToShipment, removeFromShipment } from '../actions/robot_actions'
+import { addToShipment, removeFromShipment, sendRobotShipment } from '../actions/robot_actions'
 
 const { connect } = ReactRedux
 const { allStagesComplete } = BatchHelpers
-const { robotsFrom } = ShippingHelpers
+const { robotsFrom, shippingOrShipped, shippingDescriptionFor } = ShippingHelpers
 
 const RobotShipping = (props) => {
   const accessDenied = (
     <AlertBar message="You must complete Quality Assurance before shipping." />
+  )
+
+  const sendShipmentButton = (
+    <button onClick={ () => props.onSendShipment(props.readyToShip) } className="btn btn-info">
+      Send Shipment
+    </button>
   )
 
   const shippingContent = (
@@ -56,17 +62,20 @@ const RobotShipping = (props) => {
             <Robot
               {...robot}
               key={robot.id}
-              description = "Ready to ship"
-              actionEnabled = { true }
+              description = { shippingDescriptionFor(robot) }
+              actionEnabled = { !shippingOrShipped(robot) }
               actionText = 'Remove from Shipping'
               actionOnClick = { props.removeFromShipping }
             />
           ))
         }
       </section>
+      <div className='col-12 text-center'>
+        { props.readyToShip.length > 0 ? sendShipmentButton : '' }
+      </div>
     </div>
   )
-  
+
  return (
     <main className="col-sm-9 ml-sm-auto col-md-10 pt-3">
       <h1>Shipping</h1>
@@ -85,7 +94,8 @@ function mapStateToProps (state) {
 function mapDispatchToProps (dispatch) {
   return {
     addToShipping: (robotId) => dispatch(addToShipment(robotId)),
-    removeFromShipping: (robotId) => dispatch(removeFromShipment(robotId))
+    removeFromShipping: (robotId) => dispatch(removeFromShipment(robotId)),
+    onSendShipment: (robots) => dispatch(sendRobotShipment(robots))
   }
 }
 

@@ -8,6 +8,23 @@ const filterByReadyToShip = (robots, alreadyAdded) => {
   })
 }
 
+export function shippingOrShipped(robot) {
+  return robot.shipping || robot.shipped
+}
+
+export function shippingDescriptionFor(robot) {
+  let description = ''
+  if(robot.shipped) {
+    description = 'Shipped'
+  } else if(robot.shipping) {
+    description = 'Shipping...'
+  } else {
+    description = 'Ready for Shipping'
+  }
+
+  return description
+}
+
 export function robotsFrom(state) {
   const allRobots = batchRobotsFrom(state)
   let { factorySeconds, passedQA } = shippableRobotsFrom(allRobots)

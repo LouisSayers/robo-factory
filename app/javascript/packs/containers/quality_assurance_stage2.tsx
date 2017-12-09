@@ -17,7 +17,7 @@ const QualityAssuranceStage2 = (props) => {
 
   return (
     <div>
-      <AlertBar active={stage2Complete(props.allRobots)} message="This stage is now complete. Proceed to shipping." />
+      <AlertBar active={stage2Complete(props.allRobots)} message="QA is now complete. Please proceed to shipping." />
 
       <div className='row header-action'>
         <div className='col-12 col-sm-6'>

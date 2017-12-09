@@ -7,6 +7,9 @@ const {
   ROBOTS_RECYCLING,
   ROBOTS_RECYCLED,
   ROBOTS_RECYCLING_FAILED,
+  ROBOTS_SHIPPING,
+  ROBOTS_SHIPPED,
+  ROBOTS_SHIPPING_FAILED,
   ROBOT_ADD_TO_SHIPMENT,
   ROBOT_REMOVE_FROM_SHIPMENT
 } = Constants
@@ -36,14 +39,8 @@ export function extinguishRobot(robotId) {
   return (dispatch, getState, api) => {
     dispatch(extinguishing(robotId))
     api.extinguishRobot(robotId)
-      .then((response) =>{
-        return dispatch(robotExtinguished(robotId))}
-      ).catch((error) => {
-          console.log('error...')
-          console.log(error)
-          dispatch(robotExtinguishFailed(robotId))
-        }
-      )
+      .then((response) => dispatch(robotExtinguished(robotId)))
+      .catch((error) => dispatch(robotExtinguishFailed(robotId)))
   }
 }
 
@@ -74,17 +71,10 @@ export function recycleRobots(robots) {
   return (dispatch, getState, api) => {
     dispatch(robotRecycling(robotIds))
     api.recycleRobots(robotIds)
-      .then((response) =>{
-        return dispatch(robotsRecycled(robotIds))}
-      ).catch((error) => {
-        console.log('error...')
-        console.log(error)
-        dispatch(robotRecyclingFailed(robotIds))
-      }
-    )
+      .then((response) => dispatch(robotsRecycled(robotIds)))
+      .catch((error) => dispatch(robotRecyclingFailed(robotIds)))
   }
 }
-
 
 export function addToShipment(robotId) {
   return {
@@ -97,5 +87,38 @@ export function removeFromShipment(robotId) {
   return {
     type: ROBOT_REMOVE_FROM_SHIPMENT,
     robotId
+  }
+}
+
+export function robotsShipping(robotIds) {
+  return {
+    type: ROBOTS_SHIPPING,
+    robotIds
+  }
+}
+
+export function robotsShipped(robotIds) {
+  return {
+    type: ROBOTS_SHIPPED,
+    robotIds
+  }
+}
+
+export function robotShippingFailed(robotIds) {
+  return {
+    type: ROBOTS_SHIPPING_FAILED,
+    robotIds
+  }
+}
+
+export function sendRobotShipment(robots) {
+  const robotIds = robots.map(robot => robot.id)
+
+  return (dispatch, getState, api) => {
+    dispatch(robotsShipping(robotIds))
+    api.shipRobots(robotIds)
+      .then((response) => dispatch(robotsShipped(robotIds)))
+      .catch((error) => dispatch(robotShippingFailed(robotIds))
+    )
   }
 }

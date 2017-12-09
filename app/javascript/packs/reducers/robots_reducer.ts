@@ -3,7 +3,10 @@ import * as Constants from '../constants'
 const {
   ROBOTS_RECYCLING,
   ROBOTS_RECYCLED,
-  ROBOTS_RECYCLING_FAILED
+  ROBOTS_RECYCLING_FAILED,
+  ROBOTS_SHIPPING,
+  ROBOTS_SHIPPED,
+  ROBOTS_SHIPPING_FAILED
 } = Constants
 
 const robotsReducer = (state = {}, action) => {
@@ -33,6 +36,34 @@ const robotsReducer = (state = {}, action) => {
       for(let robotId of action.robotIds) {
         let robot = updatedRobots[robotId]
         robot.recycling = false
+      }
+
+      return updatedRobots
+    case ROBOTS_SHIPPING:
+      updatedRobots = {...state}
+
+      for(let robotId of action.robotIds) {
+        let robot = updatedRobots[robotId]
+        robot.shipping = true
+      }
+
+      return updatedRobots
+    case ROBOTS_SHIPPED:
+      updatedRobots = {...state}
+
+      for(let robotId of action.robotIds) {
+        let robot = updatedRobots[robotId]
+        robot.shipping = false
+        robot.shipped = true
+      }
+
+      return updatedRobots
+    case ROBOTS_SHIPPING_FAILED:
+      updatedRobots = {...state}
+
+      for(let robotId of action.robotIds) {
+        let robot = updatedRobots[robotId]
+        robot.shipping = false
       }
 
       return updatedRobots
