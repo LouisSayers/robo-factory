@@ -23,7 +23,7 @@ const QualityAssuranceStage2 = (props) => {
 
   const stageContent = (
     <div>
-      <AlertBar active={stage2Complete(props.allRobots)} message="QA is now complete. Please proceed to shipping." />
+      <AlertBar active={props.stageComplete} message="QA is now complete. Please proceed to shipping." />
       <div className='row header-action'>
         <div className='col-12 col-sm-6'>
           <h2>Requires Attention</h2>
@@ -73,11 +73,16 @@ const QualityAssuranceStage2 = (props) => {
     </div>
   )
 
-  return stage1Complete(props.allRobots) ? stageContent : accessDenied
+  return props.accessDenied ? accessDenied : stageContent
 }
 
 function mapStateToProps (state) {
-  return robotsFrom(state)
+  let robots = robotsFrom(state)
+  return {
+    ...robots,
+    accessDenied: !stage1Complete(robots.allRobots),
+    stageComplete: stage2Complete(robots.allRobots)
+  }
 }
 
 function mapDispatchToProps (dispatch) {

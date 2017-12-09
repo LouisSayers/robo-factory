@@ -9,13 +9,15 @@ const Robot = (props) => {
 
   let robotDetails = props.showDetails ? (
     <table className="robot-details">
-      <tr><td>id:</td><td>{ props.id }</td></tr>
-      <tr><td>name:</td><td>{ props.name }</td></tr>
-      <tr><td>hasSentience:</td><td>{ conf.hasSentience.toString() }</td></tr>
-      <tr><td>hasWheels:</td><td>{ conf.hasWheels.toString() }</td></tr>
-      <tr><td>hasTracks:</td><td>{ conf.hasTracks.toString() }</td></tr>
-      <tr><td>numberOfRotors:</td><td>{ conf.numberOfRotors }</td></tr>
-      <tr><td>colour:</td><td>{ conf.colour }</td></tr>
+      <tbody>
+        <tr><td>id:</td><td>{ props.id }</td></tr>
+        <tr><td>name:</td><td>{ props.name }</td></tr>
+        <tr><td>hasSentience:</td><td>{ conf.hasSentience.toString() }</td></tr>
+        <tr><td>hasWheels:</td><td>{ conf.hasWheels.toString() }</td></tr>
+        <tr><td>hasTracks:</td><td>{ conf.hasTracks.toString() }</td></tr>
+        <tr><td>numberOfRotors:</td><td>{ conf.numberOfRotors }</td></tr>
+        <tr><td>colour:</td><td>{ conf.colour }</td></tr>
+      </tbody>
     </table>
   ) : null
 
