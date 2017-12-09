@@ -34,6 +34,7 @@ const RobotShipping = (props) => {
               actionEnabled = { !shippingOrShipped(robot) }
               actionText = 'Add to Shipping'
               actionOnClick = { props.addToShipping }
+              showDetails = { true }
             />
           ))
         }
@@ -50,6 +51,7 @@ const RobotShipping = (props) => {
               actionEnabled = { !shippingOrShipped(robot) }
               actionText = 'Add to Shipping'
               actionOnClick = { props.addToShipping }
+              showDetails = { true }
             />
           ))
         }
@@ -66,6 +68,7 @@ const RobotShipping = (props) => {
               actionEnabled = { !shippingOrShipped(robot) }
               actionText = 'Remove from Shipping'
               actionOnClick = { props.removeFromShipping }
+              showDetails = { true }
             />
           ))
         }
