@@ -12,10 +12,10 @@ export function getData() {
   }
 }
 
-export function getDataSuccess(data) {
+export function getDataSuccess(robots, batchId) {
   return {
     type: BATCH_FETCHING_DATA_SUCCESS,
-    data,
+    robots, batchId
   }
 }
 
@@ -30,7 +30,7 @@ export function fetchData() {
     dispatch(getData())
     api.getNextBatch()
       .then((response) =>
-        dispatch(getDataSuccess(response.data))
+        dispatch(getDataSuccess(response.data, response.batch))
       ).catch((error) =>
         dispatch(getDataFailure())
       )

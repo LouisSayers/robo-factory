@@ -53,7 +53,8 @@ const batch = (state = initialState, action) => {
       return {
         ...state,
         isFetching: false,
-        robots: byId(action.data)
+        robots: byId(action.robots),
+        batchId: action.batchId
       }
     case BATCH_FETCHING_DATA_FAILURE:
       return {

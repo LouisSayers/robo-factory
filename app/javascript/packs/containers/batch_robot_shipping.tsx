@@ -2,6 +2,7 @@ import * as React from 'react'
 import * as ReactRedux from 'react-redux'
 import Robot from '../components/robot'
 import AlertBar from '../components/alert_bar'
+import BatchDetails from '../components/batch_details'
 import * as BatchHelpers from '../helpers/batch_helpers'
 import * as ShippingHelpers from '../helpers/shipping_helpers'
 import { addToShipment, removeFromShipment, sendRobotShipment } from '../actions/robot_actions'
@@ -24,6 +25,7 @@ const RobotShipping = (props) => {
   const shippingContent = (
     <div>
       <h2>Factory Seconds</h2>
+      <BatchDetails batchId={props.batchId} />
       <section className="row text-center">
         {
           props.factorySeconds.map(robot => (
@@ -90,8 +92,9 @@ const RobotShipping = (props) => {
 
 function mapStateToProps (state) {
   let robots = robotsFrom(state)
+  let { batchId } = state.batch
   let qaComplete = allStagesComplete(robots.allRobots)
-  return { ...robots, qaComplete }
+  return { ...robots, batchId, qaComplete }
 }
 
 function mapDispatchToProps (dispatch) {
