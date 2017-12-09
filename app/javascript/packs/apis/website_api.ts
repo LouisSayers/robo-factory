@@ -15,8 +15,7 @@ const requestWithBody = (requestType, url, body) => {
     body: JSON.stringify(body)
   }).then(function (response) {
     if (response.status !== 200) {
-      let errorMessage = "Looks like the server didn't like something!"
-      return Promise.reject(new Error(errorMessage))
+      return Promise.reject(new Error("Looks like the server didn't like something!"))
     } else {
       return Promise.resolve(response)
     }

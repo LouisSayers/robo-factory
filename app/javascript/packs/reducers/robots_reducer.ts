@@ -9,19 +9,23 @@ const {
   ROBOTS_SHIPPING_FAILED
 } = Constants
 
-const robotsReducer = (state = {}, action) => {
-  let updatedRobots = {}
+const setValuesFor = (state, robotIds, callback) => {
+  let updatedRobots = {...state}
 
+  for(let robotId of robotIds) {
+    let robot = updatedRobots[robotId]
+    callback(robot)
+  }
+
+  return updatedRobots
+}
+
+const robotsReducer = (state = {}, action) => {
   switch (action.type) {
     case ROBOTS_RECYCLING:
-      updatedRobots = {...state}
-
-      for(let robotId of action.robotIds) {
-        let robot = updatedRobots[robotId]
+      return setValuesFor(state, action.robotIds, robot => {
         robot.recycling = true
-      }
-
-      return updatedRobots
+      })
     case ROBOTS_RECYCLED:
       let leftOverRobots = Object.keys(state)
         .filter(key => !action.robotIds.includes(parseInt(key)))
@@ -31,43 +35,23 @@ const robotsReducer = (state = {}, action) => {
         }, {})
       return leftOverRobots
     case ROBOTS_RECYCLING_FAILED:
-      updatedRobots = {...state}
-
-      for(let robotId of action.robotIds) {
-        let robot = updatedRobots[robotId]
+      return setValuesFor(state, action.robotIds, robot => {
         robot.recycling = false
-      }
-
-      return updatedRobots
+      })
     case ROBOTS_SHIPPING:
-      updatedRobots = {...state}
-
-      for(let robotId of action.robotIds) {
-        let robot = updatedRobots[robotId]
+      return setValuesFor(state, action.robotIds, robot => {
         robot.shipping = true
-      }
-
-      return updatedRobots
+      })
     case ROBOTS_SHIPPED:
-      updatedRobots = {...state}
-
-      for(let robotId of action.robotIds) {
-        let robot = updatedRobots[robotId]
+      return setValuesFor(state, action.robotIds, robot => {
         robot.shipping = false
         robot.shipped = true
         robot.add_to_shipment = false
-      }
-
-      return updatedRobots
+      })
     case ROBOTS_SHIPPING_FAILED:
-      updatedRobots = {...state}
-
-      for(let robotId of action.robotIds) {
-        let robot = updatedRobots[robotId]
+      return setValuesFor(state, action.robotIds, robot => {
         robot.shipping = false
-      }
-
-      return updatedRobots
+      })
     default:
       return state
   }
