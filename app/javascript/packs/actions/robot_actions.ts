@@ -6,7 +6,9 @@ const {
   ROBOT_EXTINGUISH_FAILED,
   ROBOTS_RECYCLING,
   ROBOTS_RECYCLED,
-  ROBOTS_RECYCLING_FAILED
+  ROBOTS_RECYCLING_FAILED,
+  ROBOT_ADD_TO_SHIPMENT,
+  ROBOT_REMOVE_FROM_SHIPMENT
 } = Constants
 
 export function extinguishing(robotId) {
@@ -80,5 +82,20 @@ export function recycleRobots(robots) {
         dispatch(robotRecyclingFailed(robotIds))
       }
     )
+  }
+}
+
+
+export function addToShipment(robotId) {
+  return {
+    type: ROBOT_ADD_TO_SHIPMENT,
+    robotId
+  }
+}
+
+export function removeFromShipment(robotId) {
+  return {
+    type: ROBOT_REMOVE_FROM_SHIPMENT,
+    robotId
   }
 }

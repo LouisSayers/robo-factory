@@ -23,11 +23,12 @@ const byId = (items) => {
 const batch = (state = initialState, action) => {
   let isRobotAction = (action.type.match(/^ROBOT_/) || {}).input
   let isRobotsAction = (action.type.match(/^ROBOTS_/) || {}).input
+  let newRobots = {}
 
   switch (action.type) {
     case isRobotAction:
       let robot = state.robots[action.robotId]
-      let newRobots = Object.assign(state.robots, {
+      newRobots = Object.assign(state.robots, {
         [action.robotId]: robotReducer(robot, action)
       })
 
@@ -36,7 +37,7 @@ const batch = (state = initialState, action) => {
         robots: newRobots
       }
     case isRobotsAction:
-      let newRobots = robotsReducer(state.robots, action)
+      newRobots = robotsReducer(state.robots, action)
       return {
         ...state,
         robots: newRobots

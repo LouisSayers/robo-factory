@@ -7,7 +7,7 @@ const {
 } = Constants
 
 const robotsReducer = (state = {}, action) => {
-  let updatedRobots = [];
+  let updatedRobots = {}
 
   switch (action.type) {
     case ROBOTS_RECYCLING:

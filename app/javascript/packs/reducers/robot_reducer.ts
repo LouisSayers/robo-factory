@@ -3,7 +3,11 @@ import * as Constants from '../constants'
 const {
   ROBOT_EXTINGUISHING,
   ROBOT_EXTINGUISHED,
-  ROBOT_EXTINGUISH_FAILED
+  ROBOT_EXTINGUISH_FAILED,
+  ROBOT_ADD_TO_SHIPMENT,
+  ROBOT_REMOVE_FROM_SHIPMENT,
+  ROBOT_SHIPPING,
+  ROBOT_SHIPPED
 } = Constants
 
 const robotReducer = (state = {}, action) => {
@@ -24,6 +28,16 @@ const robotReducer = (state = {}, action) => {
         ...state,
         extinguishing: false,
         extinguished: false
+      }
+    case ROBOT_ADD_TO_SHIPMENT:
+      return {
+        ...state,
+        add_to_shipment: true
+      }
+    case ROBOT_REMOVE_FROM_SHIPMENT:
+      return {
+        ...state,
+        add_to_shipment: false
       }
     default:
       return state

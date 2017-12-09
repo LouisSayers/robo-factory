@@ -1,9 +1,5 @@
 import * as BatchHelpers from '../helpers/batch_helpers'
-const { batchRobotsFrom } = BatchHelpers
-
-const nonExtinguished = (robots) => {
-  return robots.filter(robot => !robot.extinguished)
-}
+const { batchRobotsFrom, nonExtinguished, shippableRobotsFrom } = BatchHelpers
 
 const shouldBeRecycled = (robot) => {
   const rotorCondition = config => config.numberOfRotors < 3 || config.numberOfRotors > 8
@@ -29,13 +25,6 @@ const badRobotsFrom = (robots) => {
   return robots.filter(robot => shouldBeRecycled(robot))
 }
 
-const factorySecondsFrom = (robots) => {
-  const undesireableConditions = ['rusty', 'loose screws', 'paint scratched']
-  return robots.filter(robot => {
-    return robot.statuses.some(status => undesireableConditions.includes(status))
-  })
-}
-
 export function stage2Complete(robots) {
   let eligibleRobots = nonExtinguished(robots)
   let badRobots = badRobotsFrom(eligibleRobots)
@@ -48,18 +37,14 @@ export function descriptionForBadRobot(robot) {
 }
 
 export function robotsFrom(state) {
-  let robots = batchRobotsFrom(state)
-  robots = nonExtinguished(robots)
+  let robots = nonExtinguished(batchRobotsFrom(state))
   const badRobots = badRobotsFrom(robots)
   const otherRobots = robots.filter(robot => !badRobots.find(bad => bad === robot))
-
-  const factorySeconds = factorySecondsFrom(otherRobots)
-  const passedQA = otherRobots.filter(robot => !factorySeconds.find(second => second === robot))
-
+  const shippableRobots = shippableRobotsFrom(otherRobots)
+  
   return {
+    ...shippableRobots,
     allRobots: robots,
-    badRobots: badRobots,
-    factorySeconds: factorySeconds,
-    passedQA: passedQA
+    badRobots: badRobots
   }
 }
